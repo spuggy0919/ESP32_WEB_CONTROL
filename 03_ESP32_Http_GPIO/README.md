@@ -1,6 +1,6 @@
 # [中文](./讀我.md)
 # Mobile Phone Browser Control ESP32 And ESP Log Respones
-[ESP32_WEB_CONTROL]{https://github.com/spuggy0919/ESP32_WEB_CONTROL.git}
+[ESP32_WEB_CONTROL]{https://github.com/spuggy0919/ESP32_WEB_CONTROL}
 
 Using Server Sent Event ，send message from server to client
 
