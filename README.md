@@ -1,11 +1,14 @@
 # ESP32 WEB CONTROL
+# [English](03_ESP32_Http_GPIO/README.MD)
+# [中文](03_ESP32_Http_GPIO/讀我.md)
+
 base on LilttleFS, WebAsyncServer to create a Control Page, 
 it can use IO, log, sent msg, chart,...
 
 # *NOTICES* If you are not framily with ESP32, or Platform.IO. 
 Study from Littlefs and Wifi, then  WebAsyncServer Step by Step
 
-## *00_ESP32_littlefs study*     lorol/LittleFS library
+## *00_ESP32_littlefs study*     lorol/LittleFS library and others 
 
 ## *01_ESP32_Http_Hello study*   ESP WEB ASYNC SERVER library
 
@@ -17,3 +20,11 @@ Study from Littlefs and Wifi, then  WebAsyncServer Step by Step
 ## *03_ESP32_Http_GPIO*          All of libraries and Use Javascript, HTML skills
 
 
+# remember to modified SSID and PASSWORD in main.cpp
+```
+// 1. *** modified your SSID, PASSWORD pair 
+  if (!WiFiInit(WIFI_STA_AUTO_MODE,"SSID", "PASSWORD")) {
+      Serial.println("Error:Wifi fail");
+      return ;
+  } 
+```
