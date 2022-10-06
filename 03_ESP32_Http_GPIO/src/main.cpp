@@ -152,7 +152,7 @@ void setup(){
   Serial.println("Web Control");
   pwminit();
   // 1. *** modified your SSID, PASSWORD pair 
-  if (!WiFiInit(WIFI_STA_AUTO_MODE,"Kuo", "22320397")) {
+  if (!WiFiInit(WIFI_STA_AUTO_MODE,"SSID", "PASSWORD")) {
       Serial.println("Error:Wifi fail");
       return ;
   } 
