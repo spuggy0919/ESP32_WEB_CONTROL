@@ -1,5 +1,5 @@
 # ESP32 WEB CONTROL
-# [English](03_ESP32_Http_GPIO/README.MD)
+# [English](03_ESP32_Http_GPIO/README.md)
 # [中文](03_ESP32_Http_GPIO/讀我.md)
 
 base on LilttleFS, WebAsyncServer to create a Control Page, 
