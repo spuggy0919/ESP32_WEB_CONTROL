@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "esp_arduino_version.h": "c",
+        "typeinfo": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

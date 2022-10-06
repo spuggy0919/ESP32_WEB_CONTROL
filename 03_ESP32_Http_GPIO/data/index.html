@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ESP WEB CONTROL </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body onload="getTime()">
+    <div class="topnav">
+      <h1>ESP CONTROL PANEL</h1>
+    </div>
+    <div class="content" >
+      <div class="card-grid">
+        <!--  switch Control. cut from here.  -->
+        <div class="card" style = "background-color: #ede2e2;">
+        <p class="card-title" id="switchcnt"> LED and SWITCH</p>
+        <!-- <span class="reading"><span id="systemtime" name="time" >%CURRENTTIME%</span></span>  -->
+        <span class="reading"><span id="currenttime" name="time" >%CURRENTTIME%</span></span><br>
+          <!--  gpiostate event variables  -->
+          <img class="fit-picture" id = "gpiostate" src="ledON.png" width="100" > 
+          <div>
+            OPEN
+            <label for="onoff" class="switch">
+            <input type="checkbox" id="onoff" onchange="toggleCheckbox(this)" >
+            <span class="slider" ></span>
+            </label>
+            CLOSE
+          </div> <br>
+          <script>
+            function toggleCheckbox(element) {
+              var xhr = new XMLHttpRequest();
+              if(element.checked){ 
+                  xhr.open("POST", "/on", true); 
+              }else { 
+                  xhr.open("POST", "/off", true); 
+              }
+              xhr.send();
+            }
+          </script>	
+        </div>
+        <!--  switch Control. ending .  --> 
+        <!-- Control  button Control. cut from here.  -->
+        <div class="card">
+          <p class="card-title" >UI Functions</p>
+          
+            <!--  currenttime event variables  -->
+            <button name="on" value="on"  onclick="sendValue(this)" class="button-on">on</button>
+            <button name="off"  value="off"  onclick="sendValue(this)" class="button-on">off</button>
+            <button name="trigger" value="trigger" onclick="sendValue(this)" class="button-on">Trigger</button>
+            <button id="btn_id1" name="name1" value="value1" onclick="sendValueTest(this)" class="button-on">Test1</button>
+            <button id="btn_id2" name="name2" value="value2" onclick="sendValueTest(this)" class="button-on">Test2</button>
+            <button id="btn_id3" name="name3" value="value3" onclick="sendValueTest(this)" class="button-on">Test3</button>
+            <!--<a href="trigger"><button class="button-trigger"></button></a>-->
+          
+          <!-- <p class="state">State: %STATE%</p>-->
+            <script>
+              function sendTime() {
+                console.log("sendTime");
+
+                const date= new Date();
+                var xhr = new XMLHttpRequest();
+                //xhr.open("POST", "/"timer?value="+"element.value, true); 
+                console.log(date);
+                xhr.open("POST", "/param?timer=" + date.getTime(), true); 
+                xhr.send();
+              }
+              function sendValue(element) {
+                // modified switchio
+                var xhr = new XMLHttpRequest();
+                //xhr.open("POST", "/"param?gpio="+"element.value, true); 
+                xhr.open("POST", "/" + element.name, true); 
+                xhr.send();
+              }
+              function sendValueTest(element) {
+                var xhr = new XMLHttpRequest();
+                //xhr.open("POST", "/"param?gpio="+"element.value, true); 
+                var msg = "/param?id=";
+                msg += element.id;
+                msg += "&name=";
+                msg += element.name;
+                msg += "&value=";
+                msg += element.value;
+                msg += "&in=";
+                msg += element.innerHTML;
+                xhr.open("POST", msg, true); 
+                xhr.send();
+              }
+              function getTime(element){
+                const date= new Date();
+                sendTime();
+                console.log("getTime"+date.getHours()+date);
+                document.getElementById("systemtime").innerHTML = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+                document.getElementById("currenttime").innerHTML = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+                document.getElementById("gpiostate").source = "/ledON.png"
+                // document.getElementById("textSliderValue").innerHTML = "128"
+              }
+              function myTimer() {
+                const date= new Date();
+                const t =  date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+                document.getElementById("systemtime").innerHTML = "SYS:"+ t+" ESP:";
+              }
+              setInterval(myTimer, 1000);
+
+            </script>
+        </div>
+        <!-- Control button Control. endding...  -->
+        <!--  switch Control. cut from here.  -->
+        <div class="card" style = "background-color: #e0e000;">
+          <p class="card-title"> PWM SliderBar</p>
+          <input type="range" id= "pwmSlider"   onchange="sendSliderValue(this)" 	min="0" max="255" value="%SLIDERVALUE%" step="1"  >
+          <output id="textSliderValue">%SLIDERVALUE%</output><br>
+
+          <script>
+              function sendSliderValue(element) {
+                var sliderValue = element.value;
+                document.getElementById("textSliderValue").innerHTML = sliderValue;
+                console.log(sliderValue);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/param?slider="+sliderValue, true);
+                xhr.send();
+              }
+          </script>
+       </div>
+       <!--  switch Control. ending .  -->
+        <!-- Control textarealog .  Begin -->
+        <div class="card" style = "background-color: #eef2c1;">
+          <p class="card-title">SSE Monitor</p>
+          <p><textarea  id="textlog" name="review" rows='10' cols="40" onkeypress="sendline(event)"></textarea></p>
+          <div>
+            <input type="checkbox" id="scales" name="scales" onclick='scrollchecked(this);' checked >
+            <label for="scales">scroll</label>
+            <button name="clearbtn" value="clearbtn" onclick="clearlog(this)" class="button-on">clear</button>
+          </div>
+          <script>
+            //onchange="updateTextarea(this)"
+            // SSE output console
+            var line = "";
+            var scrollcheck = true;
+            function sendline(event){
+              var key =  event.keyCode;
+                console.log(key);
+                if (key === 13) {
+                  console.log("enter:");
+
+                var xhr = new XMLHttpRequest();
+                //xhr.open("POST", "/"param?gpio="+"element.value, true); 
+                xhr.open("POST", "/param?cmd="+line, true); 
+                xhr.send();
+                line = "";                 
+                }else{
+                  if (window.event.key.length == 1){
+                    console.log(window.event.key)
+                    line += window.event.key;
+                  }
+                  console.log(line);
+                }
+            }
+            function clearlog(element) {
+              document.getElementById("textlog").value = "";
+            }
+            function scrollchecked() {
+              scrollcheck = ! scrollcheck;
+            }
+            function updateTextarea(element) {
+                var txtValue = document.getElementById("textlog").value;
+                console.log("txtValue");
+                console.log(txtValue);
+                document.getElementById("textlog").value = txtValue + "ABCD Hello Done";
+            }
+          </script>
+        </div>
+        <!-- Control textarea log .  Endding -->
+      </div>
+    </div>
+    <script>
+        //  Server Sent Event (SSE) Listener Handle      
+        if (!!window.EventSource) {
+        var source = new EventSource('/events');
+
+        source.addEventListener('open', function(e) {
+          console.log("Events Connected");
+        }, false);
+      
+        source.addEventListener('error', function(e) {
+          if (e.target.readyState != EventSource.OPEN) {
+            console.log("Events Disconnected");
+          }
+        }, false);
+
+
+        source.addEventListener('message', function(e) {
+          console.log("message", e.data);
+        }, false);
+        // report esp time
+        source.addEventListener('currenttime', function(e) {
+          console.log("currenttime", e.data);
+          document.getElementById("currenttime").innerHTML = e.data;
+        }, false);
+        // push switch debounce key counter from running
+        source.addEventListener('switchcnt', function(e) {
+          console.log("switchcnt", e.data);
+          document.getElementById("switchcnt").innerHTML = "LED and SWITCH(cnt:"+ e.data +")";
+          if (e.data == "30") {
+            console.log("switchcnt 30 reach!!!!!!")
+            alert('Trigger cnt reach max, then it count from one! \n Even to disable pwm!');
+          }
+        }, false);
+        // updating current builtin led State
+        source.addEventListener('gpiostate', function(e) {
+          console.log("gpiostatus", e.data);
+          document.getElementById("gpiostate").src = "led" + e.data + ".png";
+        }, false);
+        source.addEventListener('onoff', function(e) {
+          console.log("onoff", e.data);
+          document.getElementById("onoff").checked = (e.data === "1") ? true:false;
+        }, false);
+        // log textare show eventlog ouput 
+        var linebuf;
+        source.addEventListener('textarea', function(e) {
+          // console.log("textarea", e.data);
+       //   if (linebuf.indexOf("\r") > 0){
+
+        //  }
+          document.getElementById("textlog").value += e.data ;
+          if (scrollcheck){
+            document.getElementById("textlog").scrollTop = document.getElementById("textlog").scrollHeight;
+          }
+        }, false);
+      }
+      // SSE end
+    </script>
+  </body>
+</html>

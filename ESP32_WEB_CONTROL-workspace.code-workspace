@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "00_esp32_littlefs"
+		},
+		{
+			"path": "01_ESP32_Http_Hello"
+		},
+		{
+			"path": "02_ESP32_Http_LITTLEFS"
+		},
+		{
+			"path": "03_ESP32_Http_GPIO"
+		}
+	]
+}
