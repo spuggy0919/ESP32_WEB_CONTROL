@@ -57,7 +57,7 @@ lib_extra_dirs = ../00_esp32_littlefs/lib
 # In main.cpp, include below.
 All self defined functions include.
 ```
-  #include "ESP32_8266.h"
+#include "ESP32inc.h" // ESP32 only, because time rtc
 ```
 
  config WIFI MODE in winit.cpp
