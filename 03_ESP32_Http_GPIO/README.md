@@ -2,7 +2,9 @@
 # Mobile Phone Browser Control ESP32 And ESP Log Respones
 [spuggy0919/ESP32_WEB_CONTROL](https://github.com/spuggy0919/ESP32_WEB_CONTROL)
 
-Using Server Sent Event ，send message from server to client
+Base on me-no-dev/ESPAsyncWebServer, lorol/Littlefs libraries.
+
+Using Server Sent Event, and javascript，exchange messages from server to client
 
 Let phone or computer be Keyboard, touch panel, display ...of your ESP32 device.
 
@@ -15,6 +17,7 @@ Functions:
 1. Sync client epoch time to ESP32.
 2. Send control command to ESP32, client can click UI botton, or slider UI Control. Turn on Led, pwm setting.
 3. In SSE textarea, user can send string text to ESP32 as command interpreter.
+4. Javascript modfy page UI, add new UI control with interpreter.（*idea*）
 
 ## Server to Client (iot Log and run task)
 
@@ -22,7 +25,7 @@ Functions:
 2.  Server send simple txt for Label in page.
 3.  Server send event log, it act as Serial Monitor.
 4.  Server can log data for updating Chart。(*TODO*)
-
+5.  ESP32 cmd interpreter。（*idea*）
 
 ### *Notice* ESP8266 has no builtin RTC Time.
 
