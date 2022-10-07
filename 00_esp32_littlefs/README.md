@@ -55,13 +55,13 @@ default_envs = nodemcuv3
     Serial.println(">ls -lR /");
 ```
 # Build and Upload, need to push EN button.
- for clean build, you can delete *.pio* directory in explorer Window at first.
+ Click the pio tool bar upload icon, for clean build, you can delete *.pio* sub folder in explorer Window at first.
 
 # upload file system, and need to push EN button.
  It will upload data folder to partition SPIFFS, it is OK.
- Click the tool bar terminal icon, then run command in terminal.
+ Click the pio tool bar terminal icon, then cli terminal will display, make sure path with your data then run command in terminal.
 ```
-pio run -t uploadfs
+00_ESP32_Littlefs % pio run -t uploadfs [enter]
 ```
 
 # Running, serial Monitor Output, it not press reset button on board.

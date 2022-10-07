@@ -81,14 +81,15 @@ All self defined functions include.
 ```
 
 # Build and Upload, need to push EN button.
- for clean build, you can delete *.pio* sub folder in explorer Window at first.
+ Click the pio tool bar upload icon, for clean build, you can delete *.pio* sub folder in explorer Window at first.
 
 # upload file system, and need to push EN button.
  It will upload data folder to partition SPIFFS, it is OK.
- Click the tool bar terminal icon, then run command in terminal.
+ Click the pio tool bar terminal icon, then cli terminal will display, make sure path with your data then run command in terminal.
 ```
-pio run -t uploadfs
+03_ESP32_Http_GPIO % pio run -t uploadfs [enter]
 ```
+
 # Running, serial Monitor will display below Messages
 ```
 Web HTTP Control
