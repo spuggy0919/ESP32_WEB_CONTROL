@@ -16,15 +16,15 @@ Study from Littlefs and Wifi, then  WebAsyncServer
 study lorol/LittleFS library and others 
 
 ### [*01_ESP32_Http_Hello*](01_ESP32_Http_Hello/README.md)  
-study ESP WEB ASYNC SERVER library,for client javascript and HTML
+study ESP WEB ASYNC SERVER library
 
 ### [*02_ESP32_Http_LITTLEFS*](02_ESP32_Http_LITTLEFS/README.md) 
-combines aboves, index.html stores in Littlefs.
+combines aboves, index.html stores in Littlefs.,for client javascript and HTML
 
 
 ### *NOTICES* If you are experts, Good, start from 03. 
 
-### *03_ESP32_Http_GPIO*
+### [*03_ESP32_Http_GPIO*](03_ESP32_Http_GPIO/README.md) 
 All of libraries and use Javascript, HTML skills
 
 
