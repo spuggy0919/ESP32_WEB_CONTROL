@@ -15,7 +15,7 @@ Functions:
 ## client to Server(HTTP Control)
 
 1. Sync client epoch time to ESP32.
-2. Send control command to ESP32, client can click UI botton, or slider UI Control. Turn on Led, pwm setting.
+2. Send control command to ESP32, client can click UI button, or slider UI Control. Turn on Led, pwm setting.
 3. In SSE textarea, user can send string text to ESP32 as command interpreter.
 4. Javascript modfy page UI, add new UI control with interpreter.（*idea*）
 

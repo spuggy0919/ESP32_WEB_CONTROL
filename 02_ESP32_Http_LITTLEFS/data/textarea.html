@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ESP TEXTAREA CONTROL </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+        <!-- Control textarealog .  Begin -->
+        <div class="card" style = "background-color: #eef2c1;">
+          <p class="card-title">SSE Monitor</p>
+          <p><textarea  id="textlog" name="review" rows='10' cols="40" onkeypress="sendline(event)"></textarea></p>
+          <div>
+            <input type="checkbox" id="scales" name="scales" onclick='scrollchecked(this);' checked >
+            <label for="scales">scroll</label>
+            <button name="clearbtn" value="clearbtn" onclick="clearlog(this)" class="button-on">clear</button>
+          </div>
+          <script>
+            //onchange="updateTextarea(this)"
+            // SSE output console
+            var line = "";
+            var scrollcheck = true;
+            function sendline(event){
+              var key =  event.keyCode;
+                console.log(key);
+                if (key === 13) {
+                  console.log("enter:");
+
+                var xhr = new XMLHttpRequest();
+                //xhr.open("POST", "/"param?gpio="+"element.value, true); 
+                xhr.open("POST", "/param?cmd="+line, true); 
+                xhr.send();
+                line = "";                 
+                }else{
+                  if (window.event.key.length == 1){
+                    console.log(window.event.key)
+                    line += window.event.key;
+                  }
+                  console.log(line);
+                }
+            }
+            function clearlog(element) {
+              document.getElementById("textlog").value = "";
+            }
+            function scrollchecked() {
+              scrollcheck = ! scrollcheck;
+            }
+            function updateTextarea(element) {
+                var txtValue = document.getElementById("textlog").value;
+                console.log("txtValue");
+                console.log(txtValue);
+                document.getElementById("textlog").value = txtValue + "ABCD Hello Done";
+            }
+          </script>
+        </div>
+        <!-- Control textarea log .  Endding -->
+</html>

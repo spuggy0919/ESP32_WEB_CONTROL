@@ -1,6 +1,7 @@
 # [中文](./讀我.md)
 # Homepage save into LittleF
 The Web Server read html file in LittleFS for HTTP_GET and other respones.
+Here we can study javascritp at client side, and HTML control, but server does not implement.
 # Platform.IO IDE
  Both ESP32 and ESP8266 are supported
  Web Server use me-no-dev/ESPAsyncWebServer
@@ -62,9 +63,9 @@ All self defined functions include.
 
 # upload file system, and need to push EN button.
  It will upload data folder to partition SPIFFS, it is OK.
- Click the tool bar terminal icon, then run command in terminal.
+ Click the tool bar terminal icon, make sure path with your data then run command in terminal.
 ```
-pio run -t uploadfs
+02_ESP32_Http_LITTLEFS % pio run -t uploadfs [enter]
 ```
 # Running, serial Monitor will display below Messages
 ```
@@ -79,6 +80,15 @@ Server Starting...
 ```
 # browser visits http://192.168.1.149 or http://192.168.1.149/any
 
-### You will see H1 H2 ... or "404 not Found"
+```
+http://192.168.1.149
+http://192.168.1.149/button.html 
+http://192.168.1.149/slider.html   
+http://192.168.1.149/chart.html   
+http://192.168.1.149/switch.html   
+http://192.168.1.149/textare.html 
+```
 
 # Good Luck!
+
+# [Back to Top](../README.md)

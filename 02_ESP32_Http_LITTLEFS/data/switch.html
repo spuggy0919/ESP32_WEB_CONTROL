@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta >
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <title>ESP SWITCH CONTROL </title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+        <!--  switch Control. cut from here.  -->
+        <div class="card" style = "background-color: #ede2e2;">
+          <p class="card-title" id="switchcnt"> LED and SWITCH</p>
+          <!-- <span class="reading"><span id="systemtime" name="time" >%CURRENTTIME%</span></span>  -->
+          <span class="reading"><span id="currenttime" name="time" >%CURRENTTIME%</span></span><br>
+            <!--  gpiostate event variables  -->
+            <img class="fit-picture" id = "gpiostate" src="ledON.png" width="100" > 
+            <div>
+              OPEN
+              <label for="onoff" class="switch">
+              <input type="checkbox" id="onoff" onchange="toggleCheckbox(this)" >
+              <span class="slider" ></span>
+              </label>
+              CLOSE
+            </div> <br>
+            <script>
+              function toggleCheckbox(element) {
+                var xhr = new XMLHttpRequest();
+                if(element.checked){ 
+                    xhr.open("POST", "/on", true); 
+                }else { 
+                    xhr.open("POST", "/off", true); 
+                }
+                xhr.send();
+              }
+            </script>	
+          </div>
+          <!--  switch Control. ending .  --> 
+</html>

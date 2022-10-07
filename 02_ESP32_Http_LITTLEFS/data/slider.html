@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ESP Button CONTROL </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+        <!--  slider Control. cut from here.  -->
+        <div class="card" style = "background-color: #e0e000;">
+          <p class="card-title"> PWM SliderBar</p>
+          <input type="range" id= "pwmSlider"   onchange="sendSliderValue(this)" 	min="0" max="255" value="%SLIDERVALUE%" step="1"  >
+          <output id="textSliderValue">%SLIDERVALUE%</output><br>
+
+          <script>
+              function sendSliderValue(element) {
+                var sliderValue = element.value;
+                document.getElementById("textSliderValue").innerHTML = sliderValue;
+                console.log(sliderValue);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/param?slider="+sliderValue, true);
+                xhr.send();
+              }
+          </script>
+       </div>
+       <!--  slider Control. ending .  -->
+</html>
